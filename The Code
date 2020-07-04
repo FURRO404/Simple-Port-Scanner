@@ -1,0 +1,42 @@
+#====================================#
+# Port_Scanner.py #
+# Enjoy! :3
+import socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+
+#====================================#
+print('\nCMD - netstat -an |find /i "listening"\n\nDirectory:\n google - 172.217.11.164 - 80\n home - (Your IP here) - (Port of your choice)"')
+
+
+host = input("Please enter the IP or directory you want to scan: ")
+
+if host == ("home"):
+    host = ("(Once again, your IP here)")
+    port = (Yep, port of your choice)
+    
+elif host == ("google"):
+    host = ("172.217.11.164")
+    port = (80)
+    
+else:
+    port = int(input("Please enter the port you want to scan: "))
+    
+print(" ")
+host_ip = socket.gethostbyname(host)
+
+print("Scanning", host_ip, "with port", port)
+
+#====================================#
+
+s.settimeout(5)
+
+def portScanner(port):
+    if s.connect_ex((host, port)):
+        print("The port is closed...")
+    else:
+        print("The port is open!")
+
+portScanner(port)
+#================FURRO404===================#
