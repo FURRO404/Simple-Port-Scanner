@@ -1,42 +1,61 @@
-#====================================#
+#================FURRO404 // s0nic26===================#
 # Port_Scanner.py #
-# Enjoy! :3
+# Made with help from s0nic26, hes cool.
+import threading
 import socket
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-
+from queue import Queue
 #====================================#
-print('\nCMD - netstat -an |find /i "listening"\n\nDirectory:\n google - 172.217.11.164 - 80\n home - (Your IP here) - (Port of your choice)"')
+
+print("Made in Collaboration with s0nic_26, he's a genius!")
+print("ALSO NEITHER OF US ARE LIABLE FOR YOUR ACTIONS.")
+print('\nCMD - netstat -an |find /i "listening"')
 
 
-host = input("Please enter the IP or directory you want to scan: ")
+target = input("Please enter the IP or directory you want to scan: ")
 
-if host == ("home"):
-    host = ("(Once again, your IP here)")
-    port = (Yep, port of your choice)
+if target== ("home"):
+    target = ("192.168.7.30")
+
     
-elif host == ("google"):
-    host = ("172.217.11.164")
-    port = (80)
-    
-else:
-    port = int(input("Please enter the port you want to scan: "))
-    
+elif target == ("google"):
+    target = ("172.217.11.164")
 print(" ")
-host_ip = socket.gethostbyname(host)
+host_ip = socket.gethostbyname(target)
 
-print("Scanning", host_ip, "with port", port)
+print("Scanning", host_ip, "for all open ports...")
 
-#====================================#
+#=================The actual engine I guess lol.===================#
+print_lock = threading.Lock()
 
-s.settimeout(5)
+def portscan(port):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    try:
+        con = s.connect((target, port))
+        with print_lock:
+            print('port', port, 'is open!!')
 
-def portScanner(port):
-    if s.connect_ex((host, port)):
-        print("The port is closed...")
-    else:
-        print("The port is open!")
 
-portScanner(port)
-#================FURRO404===================#
+        con.close
+
+    except:
+        pass
+
+def threader():
+    while True:
+        worker = q.get()
+        portscan(worker)
+        q.task_done()
+
+q = Queue()
+
+for x in range(500):
+    t = threading.Thread(target=threader)
+    t.daemon = True
+    t.start()
+
+for worker in range(1,1001):
+    q.put(worker)
+
+q.join()
+
+#================FURRO404 // s0nic26===================#
