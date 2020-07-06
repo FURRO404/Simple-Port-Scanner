@@ -1,30 +1,35 @@
 #================FURRO404 // s0nic26===================#
-# Port_Scanner.py #
-# Made with help from s0nic26, hes cool.
+# Port_Scanner.py 
+# Made with help from s0nic26, hes cool, go check him out here: https://github.com/s0nic26
 import threading
 import socket
 from queue import Queue
-#====================================#
 
-print("Made in Collaboration with s0nic_26, he's a genius!")
-print("ALSO NEITHER OF US ARE LIABLE FOR YOUR ACTIONS.")
+#==================^ Credits and Imports ^==================#
+
+print("Made in Collaboration with s0nic26, he's a genius!")
+print("ALSO NEITHER OF US ARE LIABLE FOR YOUR ACTIONS, THIS IS SOLELY FOR EDUCATIONAL PURPOSES!")
 print('\nCMD - netstat -an |find /i "listening"')
 
 
-target = input("Please enter the IP or directory you want to scan: ")
+target = input("Please enter the IP or Domain Address you want to scan: ")
+
+#--DIRECTORY (Feel free to add your own!)--#
 
 if target== ("home"):
-    target = ("192.168.7.30")
+    target = ("Your IP here")
 
-    
 elif target == ("google"):
     target = ("172.217.11.164")
+    
 print(" ")
+
 host_ip = socket.gethostbyname(target)
 
 print("Scanning", host_ip, "for all open ports...")
 
-#=================The actual engine I guess lol.===================#
+#=================The actual scanner lol.===================#
+
 print_lock = threading.Lock()
 
 def portscan(port):
